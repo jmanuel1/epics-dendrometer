@@ -41,7 +41,8 @@ Received: hello there!
 ### Why are we using a superceded library?
 
 It seems that there are many more easily found internet resources on VirtualWire
-than there are on its replacement, [RadioHead](). Based on RadioHead's list of
-supported chips, it's unclear whether it even supports the hardware we're
-using!
+than there are on its replacement,
+[RadioHead](http://www.airspayce.com/mikem/arduino/RadioHead/). Based on
+RadioHead's list of supported chips, it's unclear whether it even supports the
+hardware we're using!
 
