@@ -17,12 +17,22 @@ connected to pin 11 of an Arduino receiving data, set up like in the following
 schematic.
 
 <!-- This schematic was drawn using CircuitLab. Unfortunately, you must pay to
-save diagrams in CircuitLab, so this image is actually a screenshot. NOTE: I
-suggest you find another service to draw schematics with. -->
+save diagrams in CircuitLab, so this image is actually a screenshot. New
+diagrams should be drawn using draw.io. -->
 
-![Two separate Arduinos. The ground pin of one Arduino connected to the ground
-pin of the other. Pin 12 of the transmitting Arduino is connected, though a
-wire, to pin 11 of the receiving Arduino.](docs/test_schematic.png)
+![Two separate Arduinos. The ground pin of one Arduino is connected to the
+ground pin of the other. Pin 12 of the transmitting Arduino is connected, though
+a wire, to pin 11 of the receiving Arduino.](docs/test_schematic.png)
+
+The test Arduino sketches also work with real RF (radio) modules. In particular,
+the sketches were tested with [HiLetgo 315Mhz RF transmitter and receiver
+modules](https://www.amazon.com/HiLetgo-Transmitter-Receiver-Arduino-Raspberry/dp/B00LNADJS6).
+The following schematic shows how a circuit using these modules and the test
+sketches could be set up.
+
+![Two separate Arduinos not sharing a ground. The transmitter module is
+connected to pin 12 of the transmitting Arduino. The receiver module is
+connected to pin 11 of the receiving Arduino.](docs/radio_test_schematic.png)
 
 ### Loading the sketches onto Arduinos
 
