@@ -1,13 +1,12 @@
+#include <Arduino.h>
 #include "src/dendrometer/config.h"
 #include "src/dendrometer/sensor.h"
 #include "src/dendrometer/transmitter.h"
 
-float calibration_value = -1;
 float calibration_voltage = -1;
 
 /* Core logic */
-void calibrate(float value) {
-  calibration_value = value;
+void calibrate(void) {
   calibration_voltage = read_sensor_voltage();
 }
 
@@ -29,9 +28,8 @@ void setup() {
 }
 
 void loop() {
-  float value;
-  if (sensor_calibrate_wanted(&value)) {
-    calibrate(value);
+  if (sensor_calibrate_wanted()) {
+    calibrate();
     return;
   }
   float distance = calculate_distance();

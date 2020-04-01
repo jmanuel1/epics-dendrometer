@@ -1,8 +1,8 @@
+#include <Arduino.h>
 #include "config.h"
 #include "sensor.h"
-#include "Arduino.h"
 
-extern float calibration_value, calibration_voltage;
+extern float calibration_voltage;
 
 // Map value to 0-5000mV
 int map_value_to_5000(int sensor_value) {
@@ -24,16 +24,7 @@ float distance_to_degrees(float distance) {
 }
 
 // find what voltage corresponds to zero based on calibration
-float find_voltage_for_zero() {
-  if (calibration_value < 0) {
-    Serial.print("ERROR: Sensor needs to be calibrated!");
-    return -1;
-  }
-  const float calibration_degrees = distance_to_degrees(calibration_value);
-  const float voltage_for_zero = calibration_voltage -
-    calibration_degrees*ROTATION_SENSOR_VOLTS_PER_DEGREE;
-  return voltage_for_zero;
-}
+float find_voltage_for_zero() { return calibration_voltage; }
 
 // returns inches
 float voltage_to_distance(float voltage) {
@@ -48,23 +39,12 @@ float voltage_to_distance(float voltage) {
   #endif
 }
 
-bool sensor_calibrate_wanted(float *value) {
-  #if DENDROMETER_SENSOR == mock
-  static bool wanted = true;
-  if (wanted) {
-    wanted = false;
-    *value = 2;
-    return true;
-  }
-  return wanted;
-  #elif DENDROMETER_SENSOR == rotation
+bool sensor_calibrate_wanted(void) {
   // calibrate to zero at sketch start
   static bool wanted = true;
+  wanted = false;
   if (wanted) {
-    wanted = false;
-    *value = 0;
     return true;
   }
   return wanted;
-  #endif
 }
