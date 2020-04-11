@@ -2,7 +2,9 @@
 #include "sensor.h"
 #include "transmitter.h"
 #include <Arduino.h>
+#if DENDROMETER_TRANSMITTER == rf_transmitter
 #include <VirtualWire.h>
+#endif
 
 float calibration_voltage = -1;
 
@@ -21,10 +23,8 @@ void send_to_receiver(float distance) {
 }
 
 void setup() {
-#if DENDROMETER_TRANSMITTER == mock
   Serial.begin(9600);
-#elif DENDROMETER_TRANSMITTER == rf_transmitter
-  Serial.begin(9600);
+#if DENDROMETER_TRANSMITTER == rf_transmitter
   // default transmit pin is 12, but we are explicit about it
   vw_set_tx_pin(12);
   vw_set_ptt_inverted(true);

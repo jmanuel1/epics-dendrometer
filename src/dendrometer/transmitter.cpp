@@ -7,10 +7,9 @@
 #endif
 
 void send_through_transmitter(float value) {
-#if DENDROMETER_TRANSMITTER == mock
   Serial.print(value);
   Serial.print("\n");
-#elif DENDROMETER_TRANSMITTER == rf_transmitter
+#if DENDROMETER_TRANSMITTER == rf_transmitter
   char message[2048];
   // QUESTION: what if we want to send something more than 2047 bytes, however
   // unlikely that may be?
