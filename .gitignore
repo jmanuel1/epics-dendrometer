@@ -40,3 +40,4 @@
 .clang_complete
 *.bin
 *.eep
+*.elf
